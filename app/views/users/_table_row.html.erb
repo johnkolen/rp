@@ -1,0 +1,9 @@
+<%= ov_table_row user do %>
+  <%= ov_string_field :email %>
+  <%= ov_string_field :encrypted_password %>
+  <%= ov_string_field :reset_password_token %>
+  <%= ov_datetime_field :reset_password_sent_at %>
+  <%= ov_datetime_field :remember_created_at %>
+  <%= ov_datetime_field :created_at %>
+  <%= ov_datetime_field :updated_at %>
+<% end %>

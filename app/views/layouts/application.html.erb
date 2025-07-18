@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Rp" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="header">
+      <% if user_signed_in?
+	 login_sym = :"Log out"
+	 login_path = {path: destroy_user_session_path, method: :delete}
+	 else
+	 login_sym = :"Log in"
+	 login_path = new_user_session_path
+	 end
+	 %>
+      <%= ov_navigation_bar _brand: image_tag("logo.png", size: 90),
+	  #People: current_user && Access.allow?(Person, :index) && people_path,
+	  #Students: current_user && Access.allow?(Student, :index) && students_path,
+	  People: people_path,
+	  #Students: students_path,
+	  #Users: current_user && Access.allow?(User, :index) && users_path,
+	  #Tasks: current_user && Access.allow?(StoryTask, :index) && story_tasks_path,
+	  login_sym => login_path
+      %>
+    </div>
+    <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+    <div class="alert alert-primary"><%= alert %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<%= ov_display person do %>
+  <%= ov_string_field :first_name %>
+  <%= ov_string_field :last_name %>
+  <%= ov_date_field :birthdate %>
+  <%= ov_boolean_field :primary %>
+  <%= ov_fields_for :user %>
+  <%= ov_datetime_field :created_at %>
+  <%= ov_datetime_field :updated_at %>
+<% end %>
