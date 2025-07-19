@@ -3,10 +3,14 @@ class User < ApplicationRecord
   include ObjectView::Dims
   include ObjectView::ToParams
 
+  has_one :person, inverse_of: :user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_save :set_default_role
 
   def password_label
     "Password"
@@ -63,6 +67,10 @@ class User < ApplicationRecord
 
   def role_options
     ROLES.map { |k, v| [ v, k ] }
+  end
+
+  def set_default_role
+    self.role_id = RoleUser if self.role_id == 0
   end
 
   def is_self?(obj)

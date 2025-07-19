@@ -25,17 +25,31 @@
   <body>
     <div class="header">
       <% if user_signed_in?
-	 login_sym = :"Log out"
-	 login_path = {path: destroy_user_session_path, method: :delete}
+	   login_sym = :"Log out"
+	   login_path = {path: destroy_user_session_path, method: :delete}
+	   if current_user.admin?
+	     options = {
+	       Users: users_path,
+	       People: people_path
+    	     }
+	   else
+  	     options = {
+	       Plan: plan_path,
+               Assets: "/assets",
+               Liabilities: "/liabilities",
+    	     }
+	   end
 	 else
 	 login_sym = :"Log in"
 	 login_path = new_user_session_path
+	 options = {}
 	 end
 	 %>
       <%= ov_navigation_bar _brand: image_tag("logo.png", size: 90),
+	  **options,
 	  #People: current_user && Access.allow?(Person, :index) && people_path,
 	  #Students: current_user && Access.allow?(Student, :index) && students_path,
-	  People: people_path,
+	  #People: people_path,
 	  #Students: students_path,
 	  #Users: current_user && Access.allow?(User, :index) && users_path,
 	  #Tasks: current_user && Access.allow?(StoryTask, :index) && story_tasks_path,

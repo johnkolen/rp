@@ -3,5 +3,5 @@ class Person < ApplicationRecord
   include ObjectView::Dims
   include ObjectView::ToParams
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :person, optional: true
 end

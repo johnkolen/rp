@@ -16,6 +16,8 @@ class PeopleController < ApplicationController
   def new
     @object = @person = Person.new
     @object.add_builds!  # Used by Object View for templates
+    @object.user_id = current_user.id
+    @object.primary = true unless current_user.person
   end
 
   # GET /people/1/edit

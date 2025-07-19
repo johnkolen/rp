@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "plan/index", as: "plan"
   resources :users
   resources :people
   get "home/index"
