@@ -30,7 +30,11 @@ class PeopleController < ApplicationController
     @object = @person = Person.new(person_params)
 
     if @person.save
-      redirect_to @person, notice: "Person was successfully created."
+      if session[:register]
+        redirect_to plan_path, notice: "Thank you, #{@person.first_name}, for registering."
+      else
+        redirect_to @person, notice: "Person was successfully created."
+      end
     else
       render :new, status: :unprocessable_entity
     end

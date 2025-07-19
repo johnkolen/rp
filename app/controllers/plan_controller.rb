@@ -4,8 +4,14 @@ class PlanController < ApplicationController
   end
 
   def ensure_person
-    unless current_user.person
+    if current_user.nil?
+      redirect_to root_path
+      return
+    end
+    if current_user.person.nil?
+      session[:register] = true
       redirect_to new_person_path
+      return
     end
   end
 end

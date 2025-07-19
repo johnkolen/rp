@@ -80,6 +80,7 @@ RSpec.configure do |config|
   if defined? Devise
     config.include Devise::Test::IntegrationHelpers, type: :controller
     config.include Devise::Test::IntegrationHelpers, type: :request
+    config.include Devise::Test::IntegrationHelpers, type: :view
   end
   config.include ObjectView::Rspec::Setup, type: :request
   config.include ObjectView::Rspec::Requests, type: :request

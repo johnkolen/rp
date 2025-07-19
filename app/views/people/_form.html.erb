@@ -4,11 +4,8 @@
   <%= ov_string_field :last_name %>
   <%= ov_date_field :birthdate %>
   <%= ov_hidden_field :user_id %>
-  if current_user.admin?
-  <%= ov_boolean_field :primary %>
-  else
+  <%#= ov_boolean_field :primary %>
   <%= ov_hidden_field :primary %>
-  end
   <%#= ov_fields_for :user %>
   <%= ov_submit %>
 <% end %>

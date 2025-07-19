@@ -1,17 +1,23 @@
 FactoryBot.define do
   factory :person do
-    first_name { "string" }
-    last_name { "string" }
-    birthdate { Date.new(2025, 6, 29) }
+    first_name { "Alex" }
+    last_name { "Smith" }
+    birthdate { Date.new(1970, 6, 29) }
     primary { true }
-    user_id { 1 }
+    user_id { create(:user_sample).id }
 
     factory :person_sample do
-      first_name { Faker::Alphanumeric.alphanumeric(number: 10) }
-    last_name { Faker::Alphanumeric.alphanumeric(number: 10) }
-    birthdate { Date.new(Faker::Date.between(from: 2.years.ago, to: Date.today)) }
-    primary { rand(2) == 1 }
-    user_id { rand(1000) }
+      first_name { Faker::Name.first_name }
+      last_name { Faker::Name.last_name }
+      birthdate { Faker::Date.between(from: 70.years.ago,
+                                      to: 40.years.ago) }
+      primary { true }
+    end
+
+    after :build do |person|
+      unless person.user_id
+        person.user_id = create(:user_sample).id
+      end
     end
   end
 end

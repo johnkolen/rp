@@ -10,20 +10,24 @@ RSpec.describe "/people", type: :request do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add one or more hashes of attributes valid for your model")
+    #skip("Add one or more hashes of attributes valid for your model")
     [
-      # build(:user).to_params
-      # build(:user_sample, :with_trait).to_params
+      build(:user_sample).to_params.slice(:email).
+        merge(password: 'password',
+              password_confirmation: 'password')
     ]
   }
 
   let(:invalid_attributes) {
-    skip("Add one or more hashes of attributes invalid for your model")
-    # build(:user).to_params ssn: "9208211"  # bad param
+    #skip("Add one or more hashes of attributes invalid for your model")
+    build(:user_sample).to_params(email: "invalid")  # bad param
+    # build(:user_sample).to_params(password: "password",
+    #                               password_confirmation: "notpassword")
   }
+
   let(:new_attributes) {
-    skip("Add one or more hash of attributes valid for your model")
-    # build(:user_sample).to_params.slice(*%i[last_name first_name])
+    #skip("Add one or more hash of attributes valid for your model")
+    build(:user_sample).to_params.slice(*%i[email])
   }
 
   requests_get_index
