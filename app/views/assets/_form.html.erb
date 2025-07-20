@@ -1,0 +1,11 @@
+<%= ov_form  asset do %>
+  <%= ov_errors %>
+  <%= ov_string_field :assetable_type %>
+  <%= ov_fields_for :assetable %>
+  <%= ov_string_field :name %>
+  <%= ov_decimal_field :value %>
+  <%= ov_string_field :notes %>
+  <%= ov_string_field :location %>
+  <%= ov_integer_field :person_id %>
+  <%= ov_submit %>
+<% end %>

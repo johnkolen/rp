@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :savings_accounts
+  resources :checking_accounts
+  resources :assets
   get "plan/index", as: "plan"
   resources :users
   resources :people

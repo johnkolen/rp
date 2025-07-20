@@ -1,0 +1,27 @@
+FactoryBot.define do
+  factory :asset do
+    # assetable_type { "string" }
+    # assetable_id { 1 }
+    name { "Generic Asset" }
+    value { BigDecimal("1.23") }
+    notes { "notes" }
+    location { "location" }
+    assetable { create(:checking_account) }
+
+    factory :asset_sample do
+      #assetable_type { Faker::Alphanumeric.alphanumeric(number: 10) }
+      #assetable_id { rand(1000) }
+      name { "Some Asset"  }
+      value { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
+      notes { Faker::Alphanumeric.alphanumeric(number: 10) }
+      location { Faker::Bank.name }
+      assetable { create(:checking_account_sample) }
+    end
+
+    after :build do |person|
+      unless person.person_id
+        person.person_id = create(:person_sample).id
+      end
+    end
+  end
+end

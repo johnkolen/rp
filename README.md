@@ -12,6 +12,13 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+In psql
+
+CREATE ROLE rp_user WITH CREATEDB LOGIN PASSWORD 'rp_password';
+
+Then
+
+bin/rails db:create
 
 * Database initialization
 
