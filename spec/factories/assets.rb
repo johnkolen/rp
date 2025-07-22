@@ -6,7 +6,7 @@ FactoryBot.define do
     value { BigDecimal("1.23") }
     notes { "notes" }
     location { "location" }
-    assetable { create(:checking_account) }
+    association :assetable, factory: :checking_account
 
     factory :asset_sample do
       #assetable_type { Faker::Alphanumeric.alphanumeric(number: 10) }
@@ -15,7 +15,7 @@ FactoryBot.define do
       value { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Bank.name }
-      assetable { create(:checking_account_sample) }
+      association :assetable, factory: :checking_account
     end
 
     after :build do |person|

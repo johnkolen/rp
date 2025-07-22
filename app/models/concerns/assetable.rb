@@ -1,7 +1,11 @@
 module Assetable
   extend ActiveSupport::Concern
 
-  included do
-    has_one :asset, as: :assetable, touch: true
+  included do |klass|
+    has_one :asset,
+            as: :assetable,
+            inverse_of: :assetable,
+            touch: true,
+            dependent: :destroy
   end
 end

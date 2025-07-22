@@ -4,8 +4,12 @@ class Asset < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :assetable,
-                 types: %w[CheckingAccount SavingsAccount],
+                 types: %w[ CheckingAccount SavingsAccount ],
                  dependent: :destroy
+
+  accepts_nested_attributes_for :assetable
+
+  belongs_to :person, inverse_of: :assets
 
   validates :value, comparison: { greater_than_or_equal_to: 0 }
 end

@@ -1,11 +1,6 @@
 <%= ov_table_row asset do %>
   <%= ov_string_field :assetable_type %>
-  <%= ov_fields_for :assetable %>
   <%= ov_string_field :name %>
   <%= ov_decimal_field :value %>
-  <%= ov_string_field :notes %>
   <%= ov_string_field :location %>
-  <%= ov_datetime_field :created_at %>
-  <%= ov_datetime_field :updated_at %>
-  <%= ov_integer_field :person_id %>
 <% end %>

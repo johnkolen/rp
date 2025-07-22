@@ -4,6 +4,7 @@ class Person < ApplicationRecord
   include ObjectView::ToParams
 
   belongs_to :user, inverse_of: :person, optional: true
+  has_many :assets, inverse_of: :person
 
   validates :first_name, presence: true
   validates :last_name, presence: true

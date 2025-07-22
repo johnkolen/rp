@@ -10,20 +10,20 @@ RSpec.describe "/people", type: :request do
   # SavingsAccount. As you add validations to SavingsAccount, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add one or more hashes of attributes valid for your model")
+    #skip("Add one or more hashes of attributes valid for your model")
     [
-      # build(:savings_account).to_params
+      build(:savings_account).to_params
       # build(:savings_account_sample, :with_trait).to_params
     ]
   }
 
   let(:invalid_attributes) {
-    skip("Add one or more hashes of attributes invalid for your model")
-    # build(:savings_account).to_params ssn: "9208211"  # bad param
+    #skip("Add one or more hashes of attributes invalid for your model")
+    build(:savings_account).to_params interest_rate: "-1"  # bad param
   }
   let(:new_attributes) {
-    skip("Add one or more hash of attributes valid for your model")
-    # build(:savings_account_sample).to_params.slice(*%i[last_name first_name])
+    #skip("Add one or more hash of attributes valid for your model")
+    build(:savings_account_sample).to_params.slice(*%i[interest_rate])
   }
 
   requests_get_index

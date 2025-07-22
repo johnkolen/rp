@@ -14,6 +14,7 @@ class AssetsController < ApplicationController
   # GET /assets/new
   def new
     @object = @asset = Asset.new
+    @asset.person = current_user.person
     @object.add_builds!  # Used by Object View for templates
   end
 
@@ -25,7 +26,6 @@ class AssetsController < ApplicationController
   # POST /assets
   def create
     @object = @asset = Asset.new(asset_params)
-
     if @asset.save
       redirect_to @asset, notice: "Asset was successfully created."
     else
@@ -50,8 +50,16 @@ class AssetsController < ApplicationController
 
   def self.asset_params
     [
-    :assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id,
-    
+      :assetable_type,
+      :name,
+      :value,
+      :notes,
+      :location,
+      :person_id,
+      # union of all possible attributes
+      assetable_attributes: [
+        :interest_rate
+      ]
     ]
   end
 
