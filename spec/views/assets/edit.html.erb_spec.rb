@@ -5,4 +5,12 @@ RSpec.describe "assets/edit", type: :view do
       	    user: :admin_user
 
   views_edit
+
+  it "displays asset" do
+    a = Asset.new
+    assign(:object, a)
+    assign(:asset, a)
+    render
+    puts rendered
+  end
 end

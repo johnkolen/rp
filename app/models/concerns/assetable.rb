@@ -7,5 +7,7 @@ module Assetable
             inverse_of: :assetable,
             touch: true,
             dependent: :destroy
+    delegate :value, to: :asset
+    delegate :person, to: :asset
   end
 end

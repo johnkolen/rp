@@ -11,3 +11,11 @@
 <%= ov_index @klass %>
 <%= ov_delete @object %>
 </div>
+<h2>Projection</h2>
+<div>
+  <% @proj = @object.project %>
+</div>
+<%= render "projection_graph",
+    title: "#{@asset.name} #{@asset.type_title}",
+    label: "#{@asset.name}/#{@asset.type_title}"%>
+<%= render "projection_table" %>

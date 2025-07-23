@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import * as bootstrap from "bootstrap"
-import "object_view/controllers"
+//import "object_view/controllers"

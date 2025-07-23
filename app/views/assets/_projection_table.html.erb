@@ -1,0 +1,12 @@
+<table class="projection">
+  <tr>
+    <th>Year</th>
+    <th>Value</th>
+  </tr>
+  <% @proj.each do |year, value| %>
+  <tr>
+    <td><%=year%></td>
+    <td class="value"><%=number_to_currency(value)%></td>
+  </tr>
+  <% end %>
+</table>

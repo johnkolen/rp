@@ -8,8 +8,22 @@ class Asset < ApplicationRecord
                  dependent: :destroy
 
   accepts_nested_attributes_for :assetable
+  delegate :project, to: :assetable
 
   belongs_to :person, inverse_of: :assets
 
   validates :value, comparison: { greater_than_or_equal_to: 0 }
+
+  def assetable_type_label
+    "Asset Type"
+  end
+
+  def assetable_type_options
+    self.class.assetable_types
+  end
+
+  def type_title
+    return nil unless assetable_type
+    assetable_type.titleize
+  end
 end

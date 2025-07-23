@@ -1,0 +1,33 @@
+<figure class="projection">
+  <div id="projection">
+  </div>
+</figure>
+<script>
+  Highcharts.chart('projection', {
+  yAxis: {
+  title: {
+    text: 'Value'
+  }
+  },
+  xAxis: {
+  title: {
+    text: 'Year'
+  }
+  },
+  title: {
+    text: "<%= title %> Projection"
+  },
+ plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: <%= @proj.first.first %>
+        }
+  },
+  series: [{
+    name: "<%= label %>",
+    data: <%= @proj.map(&:last).inspect %>
+  }]
+  })
+</script>

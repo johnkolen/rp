@@ -9,4 +9,15 @@ class Person < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :birthdate, comparison: { less_than: Date.today - 10.years }
+
+  def project_assets
+    h = Hash.new{|h, k| h[k] = 0}
+    assets.each do |a|
+      a.project.each do |year, value|
+        h[year] += value
+      end
+    end
+    h.to_a.sort
+  end
+
 end

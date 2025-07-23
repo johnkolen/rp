@@ -1,0 +1,20 @@
+table.projection {
+    tr {
+	th {
+	    text-align: center;
+	}
+	td {
+	    padding-left: 10px;
+	    padding-right: 10px;
+	}
+	td.value {
+	    text-align: right;
+	}
+    }
+}
+
+figure.projection {
+    min-width: 360px;
+    max-width: 800px;
+    margin: 1em auto;
+}

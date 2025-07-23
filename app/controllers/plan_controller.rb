@@ -1,6 +1,7 @@
 class PlanController < ApplicationController
   before_action :ensure_person
   def index
+    @person = current_user.person
   end
 
   def ensure_person
