@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :checking_accounts
   resources :assets
   get "plan/index", as: "plan"
-  resources :users
+  resources :users do
+    member do
+      put "switch"
+    end
+  end
   resources :people
   get "home/index"
   mount ObjectView::Engine => "/ove"

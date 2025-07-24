@@ -4,7 +4,8 @@ RSpec.describe "/people", type: :request do
   requestsSetup object: :create_checking_account,
                 objects: [:create_checking_account_sample,
                           :create_checking_account_sample],
-                user: :admin_user
+                user: :person_user,
+                user_path: :switch_user_path
 
   # This should return the minimal set of attributes required to create a valid
   # CheckingAccount. As you add validations to CheckingAccount, be sure to

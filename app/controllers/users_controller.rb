@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy switch ]
   before_action :set_klass
+
+  # PATCH /users/switch/1
+  def switch
+    sign_in(:user, @user)
+    redirect_back(fallback_location: root_path)
+  end
 
   # GET /users
   def index

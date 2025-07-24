@@ -9,6 +9,7 @@ class CheckingAccountsController < ApplicationController
 
   # GET /checking_accounts/1
   def show
+    #raise "#{@object.inspect}\n#{@object.asset.inspect}"
   end
 
   # GET /checking_accounts/new
@@ -51,7 +52,7 @@ class CheckingAccountsController < ApplicationController
   def self.checking_account_params
     [
     :interest_rate,
-    assets_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
+    asset_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
     ]
   end
 

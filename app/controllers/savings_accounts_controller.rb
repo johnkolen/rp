@@ -51,7 +51,7 @@ class SavingsAccountsController < ApplicationController
   def self.savings_account_params
     [
     :interest_rate,
-    assets_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
+    asset_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
     ]
   end
 

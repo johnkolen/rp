@@ -4,7 +4,8 @@ RSpec.describe "/people", type: :request do
   requestsSetup object: :create_savings_account,
                 objects: [:create_savings_account_sample,
                           :create_savings_account_sample],
-                user: :admin_user
+                user: :person_user,
+                user_path: :switch_user_path
 
   # This should return the minimal set of attributes required to create a valid
   # SavingsAccount. As you add validations to SavingsAccount, be sure to

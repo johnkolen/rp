@@ -12,6 +12,14 @@ FactoryBot.define do
       role_id { User::RoleAdmin }
     end
 
+    factory :person_user do
+      email { Faker::Internet.email }
+      password { "password" }
+      password_confirmation { "password" }
+      role_id { User::RoleUser }
+      association :person, factory: :person_sample
+    end
+
     factory :user_sample do
       email { Faker::Internet.email }
       password { "sample" }

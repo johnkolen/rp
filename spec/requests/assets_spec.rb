@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "/people", type: :request do
-  requestsSetup object: :create_asset,
+  requestsSetup object: :create_asset_sample,
                 objects: [:create_asset_sample,
                           :create_asset_sample],
-                user: :admin_user
+                user: :person_user,
+                user_path: :switch_user_path
   #before :all do
   #  @person = create(:person_sample, user: user)
   #end
@@ -40,4 +41,9 @@ RSpec.describe "/people", type: :request do
   requests_patch_update
   requests_delete_destroy
 
+  it "direct" do
+    u = create(:person_user)
+    put switch_user_path(u)
+    get new_asset_path
+  end
 end
