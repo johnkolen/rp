@@ -1,0 +1,7 @@
+<%= ov_display expense do %>
+  <%= ov_string_field :name %>
+  <%= ov_decimal_field :amount %>
+  <%= ov_string_field :notes %>
+  <%= ov_string_field :location %>
+  <%= ov_fields_for :expenseable %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= ov_form  liability do %>
+  <%= ov_errors %>
+  <%= ov_string_field :liabilityable_type %>
+  <%= ov_integer_field :liabilityable_id %>
+  <%= ov_string_field :name %>
+  <%= ov_decimal_field :value %>
+  <%= ov_string_field :notes %>
+  <%= ov_string_field :location %>
+  <%= ov_fields_for :person %>
+  <%= ov_submit %>
+<% end %>

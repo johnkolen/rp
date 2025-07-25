@@ -1,0 +1,6 @@
+<%= ov_table_row property_tax do %>
+  <%= ov_decimal_field :increase_rate %>
+  <%= ov_fields_for :property %>
+  <%= ov_datetime_field :created_at %>
+  <%= ov_datetime_field :updated_at %>
+<% end %>

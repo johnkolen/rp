@@ -5,6 +5,9 @@ class Person < ApplicationRecord
 
   belongs_to :user, inverse_of: :person, optional: true
   has_many :assets, inverse_of: :person
+  has_many :liabilities, inverse_of: :person
+  has_many :incomes, inverse_of: :person
+  has_many :expenses, inverse_of: :person
 
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -1,0 +1,7 @@
+<%= ov_form  property_tax do %>
+  <%= ov_errors %>
+  <%= ov_fields_for :expense %>
+  <%= ov_decimal_field :increase_rate %>
+  <%#= ov_select :property %>
+  <%= ov_submit %>
+<% end %>

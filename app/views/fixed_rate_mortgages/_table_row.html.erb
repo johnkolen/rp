@@ -1,0 +1,8 @@
+<%= ov_table_row fixed_rate_mortgage do %>
+  <%= ov_decimal_field :pi_payment %>
+  <%= ov_decimal_field :interest_rate %>
+  <%= ov_fields_for :property %>
+  <%= ov_date_field :final_date %>
+  <%= ov_datetime_field :created_at %>
+  <%= ov_datetime_field :updated_at %>
+<% end %>

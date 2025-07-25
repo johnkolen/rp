@@ -1,0 +1,19 @@
+<%= ov_form expense do %>
+  <%= ov_errors %>
+  <%= ov_select :expenseable_type, data:{:"dtcselect-target"=>"selector",
+  action: "change->dtceselect#update"} %>
+  <%= ov_string_field :name %>
+  <%= ov_decimal_field :amount %>
+  <%= ov_string_field :notes %>
+  <%= ov_string_field :location %>
+  <%= ov_hidden_field :person_id %>
+  <% select_tag :expenseable_class,
+     options_for_select(@ov_obj.class.expenseable_types),
+     class: "form-control",
+     prompt: "Select Expense Type" %>
+  <% @ov_obj.class.expenseable_types.each do |expenseable_type| %>
+
+  <%= ov_fields_for :expenseable, using: expenseable_type, delegated_data:{:"dtcselect-target"=>"selected"} %>
+  <% end %>
+  <%= ov_submit %>
+<% end %>

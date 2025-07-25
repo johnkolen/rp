@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :property_taxes
+  resources :employments
+  resources :fixed_rate_mortgages
+  resources :expenses
+  resources :incomes
+  resources :liabilities
+  resources :properties
+  resources :real_estates
   resources :savings_accounts
   resources :checking_accounts
   resources :assets
