@@ -2,6 +2,7 @@ class Property < ApplicationRecord
   include ObjectView::MetaAttributes
   include ObjectView::Dims
   include ObjectView::ToParams
+  include StaticDims
 
   include Assetable
   include SimpleInterest
@@ -10,6 +11,13 @@ class Property < ApplicationRecord
 
   validates :appreciation_rate, comparison: { greater_than_or_equal_to: 0 }
 
+  static_dim :kindx,
+    0 => "None",
+    1 => "Primary Residence",
+    2 => "Vacation Home",
+    3 => "Land",
+    4 => "Rental"
+
   KINDS = {
     0 => "None",
     1 => "Primary Residence",
@@ -17,7 +25,6 @@ class Property < ApplicationRecord
     3 => "Land",
     4 => "Rental"
   }
-
   KINDS.each do |id, label|
     ulabel = label.gsub(" ", "_")
     define_method "#{ulabel.downcase}?" do
@@ -41,4 +48,5 @@ class Property < ApplicationRecord
   def kind_options
     KINDS.map { |k, v| [v, k] }
   end
+
 end

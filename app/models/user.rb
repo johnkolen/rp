@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include ObjectView::MetaAttributes
   include ObjectView::Dims
   include ObjectView::ToParams
+  include StaticDims
 
   has_one :person, inverse_of: :user
 
@@ -40,34 +41,11 @@ class User < ApplicationRecord
     "Remember me"
   end
 
-  def role_label
-    "Role"
-  end
-  ROLES = {
-    0 => "None",
-    1 => "Admin",
-    2 => "Support",
-    1000 => "User"
-  }
-
-  ROLES.each do |id, label|
-    define_method "#{label.downcase}?" do
-      role_id == id
-    end
-    const_set "Role#{label}", id
-  end
-
-  def role_sym
-    ROLES[role_id].downcase.to_sym
-  end
-
-  def role_str
-    ROLES[role_id]
-  end
-
-  def role_options
-    ROLES.map { |k, v| [ v, k ] }
-  end
+  static_dim :role,
+             0 => "None",
+             1 => "Admin",
+             2 => "Support",
+             1000 => "User"
 
   def set_default_role
     self.role_id = RoleUser if self.role_id == 0
