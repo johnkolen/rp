@@ -1,8 +1,9 @@
 <%= ov_form  fixed_rate_mortgage do %>
   <%= ov_errors %>
+  <%= ov_fields_for :liability %>
   <%= ov_decimal_field :pi_payment %>
   <%= ov_decimal_field :interest_rate %>
-  <%= ov_fields_for :property %>
+  <%= ov_select :property %>
   <%= ov_date_field :final_date %>
   <%= ov_submit %>
 <% end %>

@@ -14,6 +14,7 @@ class LiabilitiesController < ApplicationController
   # GET /liabilities/new
   def new
     @object = @liability = Liability.new
+    @object.person = current_user.person
     @object.add_builds!  # Used by Object View for templates
   end
 
@@ -48,10 +49,21 @@ class LiabilitiesController < ApplicationController
     redirect_to liabilities_path, notice: "Liability was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :liabilityable_type,
+      :name,
+      :value,
+      :notes,
+      :location,
+      :person_id
+    ]
+  end
+
   def self.liability_params
     [
-    :liabilityable_type, :liabilityable_id, :name, :value, :notes, :location, :person_id,
-    
+      *base_params,
+      **get_delegate_attributes
     ]
   end
 

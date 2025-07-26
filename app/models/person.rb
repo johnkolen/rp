@@ -8,6 +8,11 @@ class Person < ApplicationRecord
   has_many :liabilities, inverse_of: :person
   has_many :incomes, inverse_of: :person
   has_many :expenses, inverse_of: :person
+  # This should be a has_many, but could not get it to work
+  def properties
+    assets.where(assetable_type: "Property").map(&:property)
+  end
+  #scope :properties,
 
   validates :first_name, presence: true
   validates :last_name, presence: true

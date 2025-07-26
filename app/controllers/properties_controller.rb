@@ -48,10 +48,16 @@ class PropertiesController < ApplicationController
     redirect_to properties_path, notice: "Property was successfully destroyed.", status: :see_other
   end
 
-  def self.property_params
+  def self.base_params
     [
-    :appreciation_rate, :kind_id,
-    asset_attributes: [:assetable_type, :name, :value, :notes, :location, :person_id, :id, :_destroy]
+      :appreciation_rate,
+      :kind_id
+    ]
+  end
+
+  def self.property_params
+    [ *base_params,
+      asset_attributes: [AssetsController.base_params, :_destroy]
     ]
   end
 

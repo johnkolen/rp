@@ -7,6 +7,7 @@ class PropertyTax < ApplicationRecord
   include SimpleInterest
 
   belongs_to :property, inverse_of: :property_tax
+  accepts_nested_attributes_for :property
 
   validates :increase_rate, comparison: { greater_than_or_equal_to: 0 }
 end

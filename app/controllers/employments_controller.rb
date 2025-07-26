@@ -48,10 +48,21 @@ class EmploymentsController < ApplicationController
     redirect_to employments_path, notice: "Employment was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :gross,
+      :taxable_status_id,
+      :ssi,
+      :raise_rate,
+      :start_date,
+      :final_date
+    ]
+  end
+
   def self.employment_params
     [
-    :gross, :taxable_status_id, :ssi, :raise_rate, :start_date, :final_date,
-    
+      *base_params,
+      incomeable_attributes: [ IncomesController.base_params ]
     ]
   end
 

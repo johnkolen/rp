@@ -48,7 +48,7 @@ class AssetsController < ApplicationController
     redirect_to assets_path, notice: "Asset was successfully destroyed.", status: :see_other
   end
 
-  def self.asset_params
+  def self.base_params
     [
       :assetable_type,
       :name,
@@ -56,10 +56,13 @@ class AssetsController < ApplicationController
       :notes,
       :location,
       :person_id,
-      # union of all possible attributes
-      assetable_attributes: [
-        :interest_rate
-      ]
+    ]
+  end
+
+  def self.asset_params
+    [
+      *base_params,
+      **get_delegate_attributes
     ]
   end
 

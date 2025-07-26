@@ -5,37 +5,15 @@ class Employment < ApplicationRecord
 
   include Incomeable
   include SimpleInterest
+  include StaticDims
 
+  validates :gross, comparison: { greater_than_or_equal_to: 0 }
   validates :raise_rate, comparison: { greater_than_or_equal_to: 0 }
-  TAXABLE_STATUS = {
+
+  static_dim :taxable_status,
     0 => "None",
-    1 => "Primary Residence",
-    2 => "Vacation Home",
-    3 => "Land",
-    4 => "Rental"
-  }
+    1 => "Single",
+    2 => "Married",
+    3 => "Single Head of Household"
 
-  TAXABLE_STATUS.each do |id, label|
-    ulabel = label.gsub(" ", "_")
-    define_method "#{ulabel.downcase}?" do
-      kind_id == id
-    end
-    const_set "Kind#{ulabel}", id
-  end
-
-  def kind_label
-    "Kind"
-  end
-
-  def kind_sym
-    TAXABLE_STATUS[kind_id].gsub(" ", "_").downcase.to_sym
-  end
-
-  def kind_str
-    TAXABLE_STATUS[kind_id]
-  end
-
-  def kind_options
-    TAXABLE_STATUS.map { |k, v| [v, k] }
-  end
 end

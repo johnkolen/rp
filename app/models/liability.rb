@@ -4,7 +4,7 @@ class Liability < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :liabilityable,
-                 types: %w[ CheckingAccount SavingsAccount Property],
+                 types: %w[ FixedRateMortgage ],
                  dependent: :destroy
 
   accepts_nested_attributes_for :liabilityable

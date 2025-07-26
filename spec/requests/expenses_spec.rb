@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "/people", type: :request do
+RSpec.describe "/expenses", type: :request do
   requestsSetup object: :create_expense_sample,
                 objects: [:create_expense_sample,
                           :create_expense_sample],
@@ -13,18 +13,20 @@ RSpec.describe "/people", type: :request do
   let(:valid_attributes) {
     #skip("Add one or more hashes of attributes valid for your model")
     [
-      build(:expense, :property_tax).to_params
+      build(:expense_sample).to_params
       # build(:expense_sample, :with_trait).to_params
     ]
   }
 
   let(:invalid_attributes) {
-    skip("Add one or more hashes of attributes invalid for your model")
-    # build(:expense).to_params ssn: "9208211"  # bad param
+    # skip("Add one or more hashes of attributes invalid for your model")
+    build(:expense_sample).
+      to_params expenseable_attributes: {increase_rate: -1}
   }
+
   let(:new_attributes) {
-    skip("Add one or more hash of attributes valid for your model")
-    # build(:expense_sample).to_params.slice(*%i[last_name first_name])
+    #skip("Add one or more hash of attributes valid for your model")
+    build(:expense_sample).to_params.slice(*%i[ expenseable_attributes ])
   }
 
   requests_get_index

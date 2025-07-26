@@ -1,11 +1,17 @@
-<%= ov_form  liability do %>
+<%= ov_form  liability, wrapper_data: {controller: "dtcselect"} do %>
   <%= ov_errors %>
+  <%= ov_select :liabilityable_type, data:{:"dtcselect-target"=>"selector",
+      action: "change->dtcselect#update"} %>
   <%= ov_string_field :liabilityable_type %>
   <%= ov_integer_field :liabilityable_id %>
   <%= ov_string_field :name %>
   <%= ov_decimal_field :value %>
   <%= ov_string_field :notes %>
   <%= ov_string_field :location %>
-  <%= ov_fields_for :person %>
+  <%= ov_hidden_field :person_id %>
+  <% @ov_obj.class.liabilityable_types.each do |dtc_type| %>
+  <%= ov_fields_for :liabilityable, using: dtc_type,
+      delegated_data:{:"dtcselect-target"=>"selected"} %>
+  <% end %>
   <%= ov_submit %>
 <% end %>

@@ -48,10 +48,19 @@ class FixedRateMortgagesController < ApplicationController
     redirect_to fixed_rate_mortgages_path, notice: "Fixed rate mortgage was successfully destroyed.", status: :see_other
   end
 
-  def self.fixed_rate_mortgage_params
+  def self.base_params
     [
-    :pi_payment, :interest_rate, :property_id, :final_date,
-    
+      :pi_payment,
+      :interest_rate,
+      :final_date,
+      :property_id
+      #property_attributes: [ PropertiesController.property_params ]
+    ]
+  end
+
+  def self.fixed_rate_mortgage_params
+    [ *base_params,
+      liability_attributes: [ LiabilitiesController.base_params ]
     ]
   end
 

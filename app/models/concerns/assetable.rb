@@ -9,6 +9,8 @@ module Assetable
             dependent: :destroy
     delegate :value, to: :asset
     delegate :person, to: :asset
+    delegate :name, to: :asset
+    delegate :name_str, to: :asset
     accepts_nested_attributes_for :asset
   end
 end

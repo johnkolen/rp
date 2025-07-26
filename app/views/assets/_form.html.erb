@@ -2,10 +2,10 @@
   <button data-action="click->hello#hit">Click me!</button>
 </div>
 
-<%= ov_form  asset, wrapper_data: {controller: "assetselect"} do %>
+<%= ov_form  asset, wrapper_data: {controller: "dtcselect"} do %>
   <%= ov_errors %>
-    <%= ov_select :assetable_type, data:{:"assetselect-target"=>"selector",
-    action: "change->assetselect#update"} %>
+    <%= ov_select :assetable_type, data:{:"dtcselect-target"=>"selector",
+    action: "change->dtcselect#update"} %>
   <% unless @ov_obj.assetable_type %>
   <% end %>
   <%= ov_string_field :name %>
@@ -19,7 +19,7 @@
      prompt: "Select Asset Type" %>
   <% @ov_obj.class.assetable_types.each do |asset_type| %>
 
-  <%= ov_fields_for :assetable, using: asset_type, delegated_data:{:"assetselect-target"=>"selected"} %>
+  <%= ov_fields_for :assetable, using: asset_type, delegated_data:{:"dtcselect-target"=>"selected"} %>
   <% end %>
   <%= ov_submit %>
 <% end %>

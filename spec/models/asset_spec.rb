@@ -11,7 +11,7 @@ RSpec.describe Asset, type: :model do
     expect(a).to be_a Asset
     expect(a.checking_account).to be_a CheckingAccount
   end
-  it do
+  it "save from params" do
     p = build(:asset_sample).to_params
     a = Asset.new(p)
     a.save

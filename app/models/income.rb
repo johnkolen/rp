@@ -11,6 +11,7 @@ class Income < ApplicationRecord
   delegate :project, to: :incomeable
 
   belongs_to :person, inverse_of: :incomes
+  #accepts_nested_attributes_for :person
 
   validates :value, comparison: { greater_than_or_equal_to: 0 }
 

@@ -14,4 +14,11 @@ RSpec.describe CheckingAccount, type: :model do
     #puts c.inspect
     #puts c.asset.inspect
   end
+  it "save from params" do
+    p = build(:checking_account_sample).to_params
+    x = CheckingAccount.new(p)
+    expect(x.save).to be true
+    expect(x).to be_a Checking_Account
+    expect(x.asset).to be_a Asset
+  end
 end

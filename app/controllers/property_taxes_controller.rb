@@ -48,10 +48,17 @@ class PropertyTaxesController < ApplicationController
     redirect_to property_taxes_path, notice: "Property tax was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :increase_rate,
+      property_attributes: PropertiesController.base_params ,
+    ]
+  end
+
   def self.property_tax_params
     [
-    :increase_rate, :property_id,
-    
+      *base_params,
+      expense_attributes: [ *ExpensesController.base_params ]
     ]
   end
 

@@ -8,7 +8,7 @@ class Asset < ApplicationRecord
                  dependent: :destroy
 
   accepts_nested_attributes_for :assetable
-  delegate :project, to: :assetable
+  delegate :project, to: :assetable # project method
 
   belongs_to :person, inverse_of: :assets
 

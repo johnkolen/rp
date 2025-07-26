@@ -7,8 +7,9 @@ module Liabilityable
             inverse_of: :liabilityable,
             touch: true,
             dependent: :destroy
-    delegate :value, to: :asset
-    delegate :person, to: :asset
+    delegate :value, to: :liability
+    delegate :person, to: :liability
+    delegate :person_id, to: :liability
     accepts_nested_attributes_for :liability
   end
 end

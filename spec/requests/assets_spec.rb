@@ -28,6 +28,7 @@ RSpec.describe "/people", type: :request do
     #skip("Add one or more hashes of attributes invalid for your model")
     build(:asset).to_params value: -1  # bad param
   }
+
   let(:new_attributes) {
     #skip("Add one or more hash of attributes valid for your model")
     build(:asset_sample).to_params.slice(*%i[name value location notes])

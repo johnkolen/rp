@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def self.get_delegate_attributes mthd=nil
+    src = controller_name.singularize.classify.constantize
+    mthd ||= "#{controller_name.singularize}able_types"
+    {mthd.sub("_types", "_attributes").to_sym =>
+     src.send(mthd).inject([]) do |rv, t|
+       rv.union("#{t.pluralize}Controller".constantize.base_params)
+     end
+    }
+  end
 end

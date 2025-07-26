@@ -4,7 +4,7 @@ class Expense < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :expenseable,
-                 types: %w[ CheckingAccount SavingsAccount Property],
+                 types: %w[ PropertyTax ],
                  dependent: :destroy
 
   accepts_nested_attributes_for :expenseable

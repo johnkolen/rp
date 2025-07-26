@@ -48,10 +48,16 @@ class SavingsAccountsController < ApplicationController
     redirect_to savings_accounts_path, notice: "Savings account was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :interest_rate
+    ]
+  end
+
   def self.savings_account_params
     [
-    :interest_rate,
-    asset_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
+      *base_params,
+      asset_attributes: [ *AssetsController.base_params ]
     ]
   end
 

@@ -14,6 +14,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new
   def new
     @object = @expense = Expense.new
+    @object.person = current_user.person
     @object.add_builds!  # Used by Object View for templates
   end
 
@@ -48,10 +49,22 @@ class ExpensesController < ApplicationController
     redirect_to expenses_path, notice: "Expense was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :expenseable_type,
+      :expenseable_id,
+      :name,
+      :amount,
+      :notes,
+      :location,
+      :person_id,
+    ]
+  end
+
   def self.expense_params
     [
-    :expenseable_type, :expesnseable_id, :name, :amount, :notes, :location, :person_id,
-    
+      *base_params,
+      **get_delegate_attributes
     ]
   end
 

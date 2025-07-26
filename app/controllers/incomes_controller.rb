@@ -14,6 +14,7 @@ class IncomesController < ApplicationController
   # GET /incomes/new
   def new
     @object = @income = Income.new
+    @object.person = current_user.person
     @object.add_builds!  # Used by Object View for templates
   end
 
@@ -48,10 +49,22 @@ class IncomesController < ApplicationController
     redirect_to incomes_path, notice: "Income was successfully destroyed.", status: :see_other
   end
 
+  def self.base_params
+    [
+      :incomeable_type,
+      :incomeable_id,
+      :name,
+      :value,
+      :notes,
+      :location,
+      :person_id,
+    ]
+  end
+
   def self.income_params
     [
-    :incomeable_type, :incomeable_id, :name, :value, :notes, :location, :person_id,
-    
+      *base_params,
+      **get_delegate_attributes
     ]
   end
 
