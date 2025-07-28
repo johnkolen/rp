@@ -62,7 +62,7 @@ class EmploymentsController < ApplicationController
   def self.employment_params
     [
       *base_params,
-      incomeable_attributes: [ IncomesController.base_params ]
+      income_attributes: [ IncomesController.base_params ]
     ]
   end
 

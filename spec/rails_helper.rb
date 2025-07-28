@@ -9,6 +9,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 require ObjectView::Engine.root.join("spec/object_view/rspec/helpers")
+require 'dthelper'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -86,4 +88,5 @@ RSpec.configure do |config|
   config.include ObjectView::Rspec::Requests, type: :request
   config.include ObjectView::Rspec::Setup, type: :view
   config.include ObjectView::Rspec::Views, type: :view
+  config.include DTHelper, type: :model
 end

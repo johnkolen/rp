@@ -10,5 +10,8 @@ module Expenseable
     delegate :value, to: :expense
     delegate :person, to: :expense
     accepts_nested_attributes_for :expense
+    def klass.dtparent
+      Expense
+    end
   end
 end

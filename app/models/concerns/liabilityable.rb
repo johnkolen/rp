@@ -11,5 +11,8 @@ module Liabilityable
     delegate :person, to: :liability
     delegate :person_id, to: :liability
     accepts_nested_attributes_for :liability
+    def klass.dtparent
+      Liability
+    end
   end
 end

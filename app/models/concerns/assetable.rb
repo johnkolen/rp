@@ -12,5 +12,8 @@ module Assetable
     delegate :name, to: :asset
     delegate :name_str, to: :asset
     accepts_nested_attributes_for :asset
+    def klass.dtparent
+      Asset
+    end
   end
 end

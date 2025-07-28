@@ -10,5 +10,8 @@ module Incomeable
     delegate :value, to: :income
     delegate :person, to: :income
     accepts_nested_attributes_for :income
+    def klass.dtparent
+      Income
+    end
   end
 end
