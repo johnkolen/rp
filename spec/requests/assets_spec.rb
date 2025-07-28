@@ -2,22 +2,22 @@ require 'rails_helper'
 
 RSpec.describe "/people", type: :request do
   requestsSetup object: :create_asset_sample,
-                objects: [:create_asset_sample,
-                          :create_asset_sample],
+                objects: [ :create_asset_sample,
+                          :create_asset_sample ],
                 user: :person_user,
                 user_path: :switch_user_path
-  #before :all do
+  # before :all do
   #  @person = create(:person_sample, user: user)
-  #end
-  #after :all do
+  # end
+  # after :all do
   #  @person.destroy
-  #end
+  # end
 
   # This should return the minimal set of attributes required to create a valid
   # Asset. As you add validations to Asset, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    #skip("Add one or more hashes of attributes valid for your model")
+    # skip("Add one or more hashes of attributes valid for your model")
     [
       build(:asset_sample).to_params
       # build(:asset_sample, :with_trait).to_params
@@ -25,12 +25,12 @@ RSpec.describe "/people", type: :request do
   }
 
   let(:invalid_attributes) {
-    #skip("Add one or more hashes of attributes invalid for your model")
+    # skip("Add one or more hashes of attributes invalid for your model")
     build(:asset).to_params value: -1  # bad param
   }
 
   let(:new_attributes) {
-    #skip("Add one or more hash of attributes valid for your model")
+    # skip("Add one or more hash of attributes valid for your model")
     build(:asset_sample).to_params.slice(*%i[name value location notes])
   }
 

@@ -57,7 +57,7 @@ class PropertiesController < ApplicationController
 
   def self.property_params
     [ *base_params,
-      asset_attributes: [AssetsController.base_params, :_destroy]
+      asset_attributes: [ AssetsController.base_params, :_destroy ]
     ]
   end
 

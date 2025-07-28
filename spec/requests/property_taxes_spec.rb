@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "/property_taxes", type: :request do
   requestsSetup object: :create_property_tax,
-                objects: [:create_property_tax_sample,
-                          :create_property_tax_sample],
+                objects: [ :create_property_tax_sample,
+                          :create_property_tax_sample ],
                 user: :person_user,
                 user_path: :switch_user_path
 
@@ -19,11 +19,11 @@ RSpec.describe "/property_taxes", type: :request do
   }
 
   let(:invalid_attributes) {
-    #skip("Add one or more hashes of attributes invalid for your model")
+    # skip("Add one or more hashes of attributes invalid for your model")
     build(:property_tax).to_params increase_rate: -1 # bad param
   }
   let(:new_attributes) {
-    #skip("Add one or more hash of attributes valid for your model")
+    # skip("Add one or more hash of attributes valid for your model")
     build(:property_tax_sample).to_params.slice(*%i[ increase_rate ])
   }
 
@@ -34,5 +34,4 @@ RSpec.describe "/property_taxes", type: :request do
   requests_post_create
   requests_patch_update
   requests_delete_destroy
-
 end

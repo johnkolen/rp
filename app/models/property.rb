@@ -47,7 +47,6 @@ class Property < ApplicationRecord
   end
 
   def kind_options
-    KINDS.map { |k, v| [v, k] }
+    KINDS.map { |k, v| [ v, k ] }
   end
-
 end

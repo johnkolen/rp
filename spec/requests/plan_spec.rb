@@ -19,5 +19,4 @@ RSpec.describe "Plans", type: :request do
       end
     end
   end
-
 end

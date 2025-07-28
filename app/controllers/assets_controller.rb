@@ -55,7 +55,7 @@ class AssetsController < ApplicationController
       :value,
       :notes,
       :location,
-      :person_id,
+      :person_id
     ]
   end
 

@@ -51,7 +51,7 @@ class RealEstatesController < ApplicationController
   def self.real_estate_params
     [
     :appreciation_rate, :kind_id,
-    asset_attributes: [:assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy]
+    asset_attributes: [ :assetable_type, :assetable_id, :name, :value, :notes, :location, :person_id, :id, :_destroy ]
     ]
   end
 

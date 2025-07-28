@@ -54,7 +54,7 @@ class FixedRateMortgagesController < ApplicationController
       :interest_rate,
       :final_date,
       :property_id
-      #property_attributes: [ PropertiesController.property_params ]
+      # property_attributes: [ PropertiesController.property_params ]
     ]
   end
 

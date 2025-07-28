@@ -14,9 +14,9 @@ class FixedRateMortgage < ApplicationRecord
   def property_options
     return [] unless liability
     if person
-      person.properties.map{|p| [p.name, p.id]}
+      person.properties.map { |p| [ p.name, p.id ] }
     elsif person_id
-      Person.find(person_id).properties.map{|p| [p.name, p.id]}
+      Person.find(person_id).properties.map { |p| [ p.name, p.id ] }
     else
       []
     end

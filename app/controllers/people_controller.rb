@@ -57,7 +57,7 @@ class PeopleController < ApplicationController
 
   def self.person_params
     [
-    :first_name, :last_name, :birthdate, :primary, :user_id,
+    :first_name, :last_name, :birthdate, :primary, :user_id
 
     ]
   end

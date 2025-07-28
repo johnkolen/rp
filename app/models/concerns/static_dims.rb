@@ -32,7 +32,6 @@ module StaticDims
       define_method "#{key}_options" do
         key_const.constantize.map { |k, v| [ v, k ] }
       end
-
     end
   end
 end

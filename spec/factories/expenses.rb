@@ -11,7 +11,7 @@ FactoryBot.define do
 
     factory :expense_sample do
       name { Faker::Alphanumeric.alphanumeric(number: 10) }
-      amount { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
+      amount { BigDecimal("%d.%02d" % [ rand(100), rand(100) ]) }
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Alphanumeric.alphanumeric(number: 10) }
       association :expenseable, factory: :property_tax
@@ -19,7 +19,7 @@ FactoryBot.define do
 
     factory :expense_super do
       name { "Some Expense"  }
-      amount { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
+      amount { BigDecimal("%d.%02d" % [ rand(100), rand(100) ]) }
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Bank.name }
     end

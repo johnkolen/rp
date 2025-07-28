@@ -15,5 +15,4 @@ class Employment < ApplicationRecord
     1 => "Single",
     2 => "Married",
     3 => "Single Head of Household"
-
 end

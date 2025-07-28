@@ -1,0 +1,14 @@
+class <%=class_name %> < ApplicationRecord
+  include ObjectView::MetaAttributes
+  include ObjectView::Dims
+  include ObjectView::ToParams
+
+  include <%= base.capitalize %>able
+  include SimpleInterest
+  <% attributes.each do |attr| %>
+  <% if attr.type == :decimal -%>
+  validates :<%= attr.name %>, comparison: { greater_than_or_equal_to: 0 }
+  <% end -%>
+  <% end -%>
+
+end

@@ -9,7 +9,7 @@ class CheckingAccountsController < ApplicationController
 
   # GET /checking_accounts/1
   def show
-    #raise "#{@object.inspect}\n#{@object.asset.inspect}"
+    # raise "#{@object.inspect}\n#{@object.asset.inspect}"
   end
 
   # GET /checking_accounts/new

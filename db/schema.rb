@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_25_000942) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_28_234505) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -29,6 +29,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_000942) do
 
   create_table "checking_accounts", force: :cascade do |t|
     t.decimal "interest_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coppers", force: :cascade do |t|
+    t.decimal "weight_kg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,6 +123,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_000942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_property_taxes_on_property_id"
+  end
+
+  create_table "real_estates", force: :cascade do |t|
+    t.decimal "appreciation_rate"
+    t.integer "kind_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "savings_accounts", force: :cascade do |t|

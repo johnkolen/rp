@@ -4,7 +4,7 @@ FactoryBot.define do
     kind_id { 1 }
 
     factory :property_sample do
-      appreciation_rate { BigDecimal("%d.%02d" % [rand(5), rand(100)]) }
+      appreciation_rate { BigDecimal("%d.%02d" % [ rand(5), rand(100) ]) }
       kind_id { rand(4) + 1 }
     end
 

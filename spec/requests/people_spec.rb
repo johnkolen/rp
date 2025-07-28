@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "/people", type: :request do
   requestsSetup object: :create_person,
-                objects: [:create_person_sample,
-                          :create_person_sample],
+                objects: [ :create_person_sample,
+                          :create_person_sample ],
                 user: :admin_user
 
   # This should return the minimal set of attributes required to create a valid
   # Person. As you add validations to Person, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    #skip("Add one or more hashes of attributes valid for your model")
+    # skip("Add one or more hashes of attributes valid for your model")
     [
       build(:person_sample).to_params
       # build(:person_sample, :with_trait).to_params
@@ -18,12 +18,12 @@ RSpec.describe "/people", type: :request do
   }
 
   let(:invalid_attributes) {
-    #skip("Add one or more hashes of attributes invalid for your model")
+    # skip("Add one or more hashes of attributes invalid for your model")
     build(:person_sample).to_params birthdate: Date.today + 10.years  # bad param
   }
 
   let(:new_attributes) {
-    #skip("Add one or more hash of attributes valid for your model")
+    # skip("Add one or more hash of attributes valid for your model")
     build(:person_sample).to_params.slice(*%i[last_name first_name])
   }
 
@@ -34,5 +34,4 @@ RSpec.describe "/people", type: :request do
   requests_post_create
   requests_patch_update
   requests_delete_destroy
-
 end

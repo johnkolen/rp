@@ -11,7 +11,7 @@ FactoryBot.define do
 
     factory :income_sample do
       name { Faker::Alphanumeric.alphanumeric(number: 10) }
-      value { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
+      value { BigDecimal("%d.%02d" % [ rand(100), rand(100) ]) }
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Alphanumeric.alphanumeric(number: 10) }
       association :incomeable, factory: :employment
@@ -19,7 +19,7 @@ FactoryBot.define do
 
     factory :income_super do
       name { "Some Income"  }
-      value { BigDecimal("%d.%02d" % [rand(100), rand(100)]) }
+      value { BigDecimal("%d.%02d" % [ rand(100), rand(100) ]) }
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Bank.name }
     end

@@ -12,7 +12,7 @@ class PlanController < ApplicationController
     if current_user.person.nil?
       session[:register] = true
       redirect_to new_person_path
-      return
+      nil
     end
   end
 end

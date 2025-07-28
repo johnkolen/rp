@@ -8,9 +8,9 @@ RSpec.describe "assets/show", type: :view do
 
   it "shows asset" do
     a = Asset.new
-    #assign(:object, a)
-    #assign(:asset, a)
+    # assign(:object, a)
+    # assign(:asset, a)
     render
-    #puts rendered
+    # puts rendered
   end
 end

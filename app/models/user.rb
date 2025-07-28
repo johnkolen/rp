@@ -59,5 +59,4 @@ class User < ApplicationRecord
     # TODO: obj might have person deeper than first level
     false
   end
-
 end

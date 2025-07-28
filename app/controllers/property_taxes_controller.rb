@@ -51,7 +51,7 @@ class PropertyTaxesController < ApplicationController
   def self.base_params
     [
       :increase_rate,
-      property_attributes: PropertiesController.base_params ,
+      property_attributes: PropertiesController.base_params
     ]
   end
 

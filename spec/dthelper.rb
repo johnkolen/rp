@@ -1,6 +1,6 @@
 module DTHelper
-  def self.included klass
-    def klass.save_dt_from_params &block
+  def self.included(klass)
+    def klass.save_dt_from_params(&block)
       it "save from params" do |ex|
         klass = self.class.top_level_description.constantize
         p = build(:"#{klass.to_s.underscore}_sample").to_params

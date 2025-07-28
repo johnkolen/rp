@@ -4,7 +4,7 @@ class Asset < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :assetable,
-                 types: %w[ CheckingAccount SavingsAccount Property],
+                 types: %w[ CheckingAccount SavingsAccount Property Copper Copper],
                  dependent: :destroy
 
   accepts_nested_attributes_for :assetable
