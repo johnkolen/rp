@@ -21,16 +21,16 @@ module StaticDims
       end
 
       define_method "#{key}_sym" do
-        key_const.constantize[send("#{key}_id")].
+        self.class.const_get(key_const)[send("#{key}_id")].
           gsub(" ", "_").downcase.to_sym
       end
 
       define_method "#{key}_str" do
-        key_const.constantize[send("#{key}_id")]
+        self.class.const_get(key_const)[send("#{key}_id")]
       end
 
       define_method "#{key}_options" do
-        key_const.constantize.map { |k, v| [ v, k ] }
+        self.class.const_get(key_const).map { |k, v| [ v, k ] }
       end
     end
   end

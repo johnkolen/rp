@@ -9,10 +9,15 @@ class Employment < ApplicationRecord
 
   validates :gross, comparison: { greater_than_or_equal_to: 0 }
   validates :raise_rate, comparison: { greater_than_or_equal_to: 0 }
+  # validates :final_date, comparison: { greater_than_or_equal_to: :start_date }
 
   static_dim :taxable_status,
     0 => "None",
     1 => "Single",
     2 => "Married",
     3 => "Single Head of Household"
+
+  def ssi_label
+    "Social Security Withheld"
+  end
 end

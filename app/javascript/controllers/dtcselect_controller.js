@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
+console.log("loading dtcselect");
+
 export default class extends Controller {
   static targets = ["selector", "selected"]
 
@@ -12,9 +14,12 @@ export default class extends Controller {
     console.log("update selector " + this.selectorTarget.value)
     this.expose();
   }
+
   expose() {
+    console.log("expose");
     console.log("selector " + this.selectorTarget.value)
     let name = this.selectorTarget.value
+    //console.log("target count: " + this.selectedTargets.length() );
     this.selectedTargets.forEach((element, index) => {
       console.log(element);
       console.log(element.getAttribute("name"));
