@@ -4,7 +4,7 @@ class Income < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :incomeable,
-                 types: %w[ Employment ],
+                 types: %w[ Employment SocialSecurity ],
                  dependent: :destroy
 
   accepts_nested_attributes_for :incomeable

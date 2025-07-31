@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :social_securities
   resources :coppers
   resources :property_taxes
   resources :employments

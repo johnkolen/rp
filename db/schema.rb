@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_25_000942) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -128,6 +128,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_000942) do
 
   create_table "savings_accounts", force: :cascade do |t|
     t.decimal "interest_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "social_securities", force: :cascade do |t|
+    t.decimal "benefit_at_62"
+    t.decimal "benefit_at_67"
+    t.decimal "benefit_at_70"
+    t.date "retirement_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
