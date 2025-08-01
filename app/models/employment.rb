@@ -25,7 +25,8 @@ class Employment < ApplicationRecord
   end
 
   def init_amount year
-    if !final_date || start_date.year < year && year < final_date.year
+    if !final_date ||
+       start_date.year < year && year < final_date.year
       self.amount ||= net_amount
     end
   end
