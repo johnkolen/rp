@@ -4,6 +4,8 @@ FactoryBot.define do
     amount { BigDecimal("1.23") }
     notes { "notes" }
     location { "location" }
+    start_date { Date.parse("2020-07-24") }
+    final_date { Date.parse("2080-07-24") }
 
     trait :property_tax do
       association :expenseable, factory: :property_tax
@@ -15,6 +17,11 @@ FactoryBot.define do
       notes { Faker::Alphanumeric.alphanumeric(number: 10) }
       location { Faker::Alphanumeric.alphanumeric(number: 10) }
       association :expenseable, factory: :property_tax
+      transient do
+        sd { Date.today - rand(10 * 365).days }
+      end
+      start_date { sd }
+      final_date { sd + 100.years }
     end
 
     factory :expense_super do

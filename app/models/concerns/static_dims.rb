@@ -3,13 +3,13 @@ module StaticDims
 
   included do |klass|
     def klass.static_dim key, **values
-      key_const = key.to_s.upcase
-      key_camel = key.to_s.camelize
+      key_const = key.to_s.upcase.gsub('-', '')
+      key_camel = key.to_s.gsub('-', '_').camelize
 
       const_set key_const, values
 
       values.each do |id, label|
-        ulabel = label.gsub(" ", "_")
+        ulabel = label.gsub(/[ -]/, "_")
         define_method "#{ulabel.downcase}?" do
           send("#{key}_id") == id
         end

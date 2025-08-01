@@ -3,7 +3,9 @@
   <%= ov_select :incomeable_type, data:{:"dtcselect-target"=>"selector",
       action: "change->dtcselect#update"} %>
   <%= ov_string_field :name %>
-  <%= ov_decimal_field :value %>
+  <%= ov_decimal_field :amount %>
+  <%= ov_date_field :start_date %>
+  <%= ov_date_field :final_date %>
   <%= ov_string_field :notes %>
   <%= ov_string_field :location %>
   <%= ov_hidden_field :person_id %>

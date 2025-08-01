@@ -55,8 +55,11 @@ class ExpensesController < ApplicationController
       :expenseable_id,
       :name,
       :amount,
+      :start_date,
+      :final_date,
       :notes,
       :location,
+      :frequency_id,
       :person_id
     ]
   end

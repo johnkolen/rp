@@ -54,7 +54,9 @@ class IncomesController < ApplicationController
       :incomeable_type,
       :incomeable_id,
       :name,
-      :value,
+      :amount,
+      :start_date,
+      :final_date,
       :notes,
       :location,
       :person_id

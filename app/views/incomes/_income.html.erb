@@ -1,7 +1,9 @@
 <%= ov_display income do %>
   <%= ov_string_field :incomeable_type %>
   <%= ov_string_field :name %>
-  <%= ov_decimal_field :value %>
+  <%= ov_decimal_field :amount %>
+  <%= ov_date_field :start_date %>
+  <%= ov_date_field :final_date %>
   <%= ov_string_field :notes %>
   <%= ov_string_field :location %>
   <%= ov_fields_for :incomeable %>

@@ -10,6 +10,9 @@ module Liabilityable
     delegate :value, to: :liability
     delegate :person, to: :liability
     delegate :person_id, to: :liability
+    delegate :init_value, to: :liability
+    delegate :payment, to: :liability
+    delegate :update_value, to: :liability
     accepts_nested_attributes_for :liability
     def klass.dtparent
       Liability

@@ -38,8 +38,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
     t.integer "taxable_status_id"
     t.boolean "ssi"
     t.decimal "raise_rate"
-    t.date "start_date"
-    t.date "final_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +49,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
     t.decimal "amount"
     t.string "notes"
     t.string "location"
+    t.integer "frequency_id"
+    t.date "start_date"
+    t.date "final_date", default: "2199-12-31"
     t.bigint "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,9 +72,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
     t.string "incomeable_type"
     t.integer "incomeable_id"
     t.string "name"
-    t.decimal "value"
+    t.decimal "amount"
     t.string "notes"
     t.string "location"
+    t.date "start_date"
+    t.date "final_date", default: "2199-12-31"
     t.bigint "person_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

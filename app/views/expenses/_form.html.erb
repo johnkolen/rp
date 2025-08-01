@@ -4,6 +4,9 @@
   action: "change->dtceselect#update"} %>
   <%= ov_string_field :name %>
   <%= ov_decimal_field :amount %>
+  <%= ov_select :frequency %>
+  <%= ov_date_field :start_date %>
+  <%= ov_date_field :final_date %>
   <%= ov_string_field :notes %>
   <%= ov_string_field :location %>
   <%= ov_hidden_field :person_id %>

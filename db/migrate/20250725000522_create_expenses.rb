@@ -7,6 +7,9 @@ class CreateExpenses < ActiveRecord::Migration[8.0]
       t.decimal :amount
       t.string :notes
       t.string :location
+      t.integer :frequency_id
+      t.date :start_date
+      t.date :final_date, default: Date.new(2199, 12, 31)
       t.references :person, null: false, foreign_key: true
 
       t.timestamps

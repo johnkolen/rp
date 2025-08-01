@@ -54,8 +54,6 @@ class EmploymentsController < ApplicationController
       :taxable_status_id,
       :ssi,
       :raise_rate,
-      :start_date,
-      :final_date
     ]
   end
 
