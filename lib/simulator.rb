@@ -91,7 +91,7 @@ class Simulator
   end
 
   def run
-    taxes = Taxes.new
+    taxes = Taxes.new :single
     start_year = first_year do |year|
       init_incomes year
       init_expenses year
@@ -116,7 +116,7 @@ class Simulator
              networth: assets.to_i - liabilities.to_i,
             }
       puts @taxable
-      puts taxes.income_tax year, :single, 0, 0
+      puts taxes.income_tax year, 0, 0
       puts row.inspect
       @frac = 1
     end
