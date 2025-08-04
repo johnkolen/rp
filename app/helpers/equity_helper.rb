@@ -1,0 +1,2 @@
+module EquityHelper
+end

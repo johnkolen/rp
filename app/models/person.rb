@@ -27,4 +27,18 @@ class Person < ApplicationRecord
     end
     h.to_a.sort
   end
+
+  def age now=nil
+    now ||= Date.today
+    days = now - self.birthdate
+    years = (days / 365).floor
+    bx = Date.new(years + self.birthdate.year,
+                  self.birthdate.month,
+                  self.birthdate.day)
+    ex = Date.new(1 + years + self.birthdate.year,
+                  self.birthdate.month,
+                  self.birthdate.day)
+    years + (now - bx) / (ex - bx).to_f
+  end
+
 end

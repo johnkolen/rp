@@ -1,5 +1,6 @@
 module Expenseable
   extend ActiveSupport::Concern
+  include DTMissing
 
   included do |klass|
     has_one :expense,
@@ -7,15 +8,14 @@ module Expenseable
             inverse_of: :expenseable,
             touch: true,
             dependent: :destroy
-    delegate :value, to: :expense
-    delegate :start_date, to: :expense
-    delegate :final_date, to: :expense
-    delegate :start_date_label, to: :expense
-    delegate :final_date_label, to: :expense
-    delegate :person, to: :expense
     accepts_nested_attributes_for :expense
     def klass.dtparent
       Expense
     end
+  end
+
+  # this is for DTMissing
+  def dtparent
+    expense
   end
 end

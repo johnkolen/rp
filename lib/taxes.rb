@@ -4,7 +4,7 @@ class Taxes
   end
 
   def income_tax year, income, dependents=0, deductions=nil
-    scale = (1 + 0.03) ** (year - TAX_TABLES_YEAR)
+    scale = (1 + BRACKET_RATE / 100.0) ** (year - TAX_TABLES_YEAR)
     std = STD_DEDUCTION[@status] * scale
     deductions ||= std
     agi = income - [deductions, std].max
@@ -21,7 +21,7 @@ class Taxes
 
   def social_security_tax year, income
     scale = (1 + MAX_SSI_INCOME_INCREASE_RATE / 100.0) * (year - TAX_TABLES_YEAR)
-    ([income, MAX_SSI_INCOME * scale].min * SSI_RATE).round
+    ([income, MAX_SSI_INCOME * scale].min * SSI_RATE / 100.0).round
   end
 
   def medicare_tax year, income
@@ -44,7 +44,7 @@ class Taxes
   MAX_SSI_INCOME_20YR = 90000
   MAX_SSI_INCOME_INCREASE_RATE =
     ((Math.exp(Math.log(MAX_SSI_INCOME / MAX_SSI_INCOME_20YR.to_f) / 20) - 1) * 100000).round / 1000.0
-
+  BRACKET_RATE = 3
   MEDICARE_RATE = 1.3
   TAX_TABLES = {
     single: [

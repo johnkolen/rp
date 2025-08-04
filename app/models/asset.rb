@@ -4,7 +4,7 @@ class Asset < ApplicationRecord
   include ObjectView::ToParams
 
   delegated_type :assetable,
-                 types: %w[ CheckingAccount SavingsAccount Property],
+                 types: %w[ CheckingAccount SavingsAccount Property Equity ],
                  dependent: :destroy
 
   accepts_nested_attributes_for :assetable
@@ -40,13 +40,15 @@ class Asset < ApplicationRecord
     end
   end
 
-  attr_reader :taxable_gain
-  attr_reader :ssi_taxable_gain
+  attr_accessor :taxable_gain
+  attr_accessor :ssi_taxable_gain
+  attr_accessor :penalties
 
   def update_value year, adjust, frac
     r = (1 + self.interest_rate / 100.0 * frac)
     old = self.value
     self.value = self.value * r + adjust * (1 + (r - 1) / 2)
+    penalties = 0
     if pretax?
       @taxable_gain = -[adjust, 0].min
       @ssi_taxable_gain = 0

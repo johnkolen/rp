@@ -9,7 +9,9 @@ RSpec.describe Simulator, type: :model do
       asset(CheckingAccount, person: person, value: 1000),
       house = asset(Property, person: person, value: 300000,
                     appreciation_rate: 1,
-                    kind_id: Property::KindPrimaryResidence)
+                    kind_id: Property::KindPrimaryResidence),
+      asset(Equity, person: person, value: 100000,
+            name: "SPY", return_rate: 10, beta: 1.0)
     ]
 
     liabilities = [

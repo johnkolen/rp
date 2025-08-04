@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_03_222152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "equities", force: :cascade do |t|
+    t.decimal "return_rate", default: "0.0"
+    t.integer "duration_id", default: 0
+    t.decimal "beta", default: "1.0"
+    t.integer "account_type_id", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.string "expenseable_type"
     t.integer "expenseable_id"
@@ -66,6 +75,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_173727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_fixed_rate_mortgages_on_property_id"
+  end
+
+  create_table "i_r_as", force: :cascade do |t|
+    t.decimal "return_20yr_rate"
+    t.decimal "beta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "incomes", force: :cascade do |t|

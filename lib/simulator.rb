@@ -19,7 +19,7 @@ class Simulator
     from ||= Date.today
     year = from.year
     @frac = from.yday / Date.new(year, 12, 31).yday.to_f
-    @last_year = (person.birthdate + 100.years).year
+    @last_year = (person.birthdate + 70.years).year
     yield year if block_given?
     year
   end
@@ -31,13 +31,18 @@ class Simulator
   end
 
   def get_income year
-    @incomes.inject(0) do |sum, x|
-      sum += x.amount * @frac
+    res = {}
+    cnt = 0
+    res[:total] = @incomes.inject(0) do |sum, x|
+      y = x.amount * @frac
+      res[x.name || "Income#{cnt+=1}"] = y.to_i
+      sum += y
       @taxable += x.taxable_amount
       @ssi_taxable += x.ssi_taxable_amount
       x.update_amount year
       sum
     end
+    res
   end
 
   def init_expenses year
@@ -46,12 +51,17 @@ class Simulator
     end
   end
 
-  def get_expense year
-    @expenses.inject(0) do |sum, x|
-      sum += x.amount * @frac
+  def dep_get_expense year
+    res = {}
+    cnt = 0
+    res[:total] = @expenses.inject(0) do |sum, x|
+      y = x.amount * @frac
+      res[x.name || "Income#{cnt+=1}"] = y.to_i
+      sum += y
       x.update_amount year
       sum
     end
+    res
   end
 
   def init_assets year
@@ -78,47 +88,140 @@ class Simulator
   end
 
   def get_liabilities_payment year
-    @liabilities.inject(0) do |sum, x|
-      sum + x.payment(year) * @frac
+    res = {}
+    cnt = 0
+    res[:total] = @liabilities.inject(0) do |sum, x|
+      y = x.payment(year) * @frac
+      res[x.name || "Liability#{cnt+=1}"] = y.to_i
+      sum + y
+    end
+    res
+  end
+
+  def get_liabilities year
+    res = {}
+    cnt = 0
+    res[:total] = @liabilities.inject(0) do |sum, x|
+      y = x.value
+      x.update_value year, @frac
+      res[x.name || "Liability#{cnt+=1}"] = y.to_i
+      sum + y
+    end
+  end
+
+  def get_generic klass, values, &block
+    res = {}
+    cnt = 0
+    res[:total] = values.inject(0) do |sum, x|
+      y = yield x
+      y = y.round
+      res[x.name || "#{klass}#{cnt+=1}"] = y
+      sum + y.round
+    end.to_i
+    res
+  end
+
+  def get_income year
+    get_generic Income, @incomes do |x|
+      y = x.amount * @frac
+      @taxable += x.taxable_amount
+      @ssi_taxable += x.ssi_taxable_amount
+      x.update_amount year
+      y
+    end
+  end
+
+  def get_expense year
+    get_generic Expense, @expenses do |x|
+      y = x.amount * @frac
+      x.update_amount year
+      y
+    end
+  end
+
+  def get_liabilities_payment year
+    get_generic Liability, @liabilities do |x|
+      x.payment(year) * @frac
     end
   end
 
   def get_liabilities year
-    @liabilities.inject(0) do |sum, x|
+    get_generic Liability, @liabilities do |x|
+      y = x.value
       x.update_value year, @frac
-      sum + x.value
+      y
     end
   end
 
+  def get_assets year, adjust
+    allocate = @assets.map{|a| [a, adjust / @assets.size.to_f] }.to_h
+    get_generic Asset, @assets do |x|
+      alloc = allocate[x]
+      x.update_value year, alloc, @frac
+      @taxable += x.taxable_gain
+      @ssi_taxable += x.ssi_taxable_gain
+      x.value
+    end
+  end
+
+  def get_taxes year
+    federal = @taxes.income_tax year, @taxable
+    ssi = @taxes.social_security_tax year, @ssi_taxable
+    medicare = @taxes.medicare_tax year, @taxable
+    #TODO state taxes
+    {
+      federal: federal,
+      social_security: ssi,
+      medicare: medicare,
+      total: federal + ssi + medicare
+    }
+  end
+
   def run
-    taxes = Taxes.new :single
+    @taxes = Taxes.new :single
     start_year = first_year do |year|
       init_incomes year
       init_expenses year
       init_assets year
       init_liabilities year
     end
+    res = {}
     start_year.upto(@last_year) do |year|
       @taxable = 0
       @ssi_taxable = 0
       income = get_income year
       expense = get_expense year
-      expense += get_liabilities_payment year
-      balance = income - expense
-      assets = get_assets year, balance
+      lpayment = get_liabilities_payment year
+      expense[:total] += lpayment.delete(:total)
+      expense.merge! lpayment
+      net_income = income[:total] - expense[:total]
+      # if there is money left over, it is invested
+      # if additional funds are needed, they are withdrawn
+      assets = get_assets year, net_income
       liabilities = get_liabilities year
+      net_worth = assets[:total] - liabilities[:total]
+      taxes = get_taxes year
       row = {year: year,
-             income: income.to_i,
-             expense: expense.to_i,
-             balance: balance.to_i,
-             assets: assets.to_i,
-             liabilities: liabilities.to_i,
-             networth: assets.to_i - liabilities.to_i,
+             income: income[:total],
+             expense: expense[:total],
+             taxes: taxes[:total],
+             net_income: net_income,
+             assets: assets[:total],
+             liabilities: liabilities[:total],
+             net_worth: net_worth
             }
-      puts @taxable
-      puts taxes.income_tax year, 0, 0
       puts row.inspect
+      res[year] = {
+        income: income,
+        expense: expense,
+        taxes: taxes,
+        net_income: net_income,
+        assets: assets,
+        liabilities: liabilities,
+        net_worth: net_worth
+      }
       @frac = 1
     end
+    res
   end
 end
