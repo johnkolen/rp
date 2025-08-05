@@ -21,6 +21,10 @@ class Equity < ApplicationRecord
     account_type_id != 0
   end
 
+  def interest_rate
+    return_rate || 0
+  end
+
   def update_value year, adjust, frac
     r = (1 + self.return_rate / 100.0 * frac)
     old = self.value

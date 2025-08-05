@@ -1,7 +1,3 @@
-<div data-controller="hello">
-  <button data-action="click->hello#hit">Click me!</button>
-</div>
-
 <%= ov_form  asset, wrapper_data: {controller: "dtcselect"} do %>
   <%= ov_errors %>
     <%= ov_select :assetable_type, data:{:"dtcselect-target"=>"selector",

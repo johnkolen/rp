@@ -28,6 +28,9 @@ export default class extends Controller {
       element.querySelectorAll("input").forEach((x, idx) => {
 	x.disabled = show;
       })
+      element.querySelectorAll("select").forEach((x, idx) => {
+	x.disabled = show;
+      })
     })
   }
 }

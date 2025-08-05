@@ -2,6 +2,9 @@
 <div>
   Assets: <%= @person.assets.count %>
 </div>
+<%= ov_modal do %>
+body
+<% end %>
 <% @proj = @person.project_assets %>
 <%= render "assets/projection_graph",
     title: "Assets",
