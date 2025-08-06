@@ -1,4 +1,4 @@
-<%= ov_form  asset, wrapper_data: {controller: "dtcselect"} do %>
+<%= ov_form  asset, wrapper_data: {controller: "dtcselect"}, turbo: @turbo do %>
   <%= ov_errors %>
     <%= ov_select :assetable_type, data:{:"dtcselect-target"=>"selector",
     action: "change->dtcselect#update"} %>

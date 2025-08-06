@@ -1,10 +1,11 @@
 <h1>Your Retirement Plan</h1>
+<%= ov_modal_objects Asset  do %>
 <div>
   Assets: <%= @person.assets.count %>
+  <%= ov_modal_button "New Asset", target: "#asset-modal" %>
 </div>
-<%= ov_modal do %>
-body
 <% end %>
+
 <% @proj = @person.project_assets %>
 <%= render "assets/projection_graph",
     title: "Assets",

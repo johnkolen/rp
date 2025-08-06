@@ -1,6 +1,7 @@
 class AssetsController < ApplicationController
   before_action :set_asset, only: %i[ show edit update destroy ]
   before_action :set_klass
+  before_action :set_turbo, only: %i[ show edit update ]
 
   # GET /assets
   def index
@@ -36,7 +37,9 @@ class AssetsController < ApplicationController
   # PATCH/PUT /assets/1
   def update
     if @asset.update(asset_params)
-      redirect_to @asset, notice: "Asset was successfully updated.", status: :see_other
+      redirect_to asset_path(@asset, params: @tfp),
+                  notice: "Asset was successfully updated.",
+                  status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
